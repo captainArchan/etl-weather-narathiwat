@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:13  # ใช้ PostgreSQL เวอร์ชัน 13
+    container_name: postgres_container
+    restart: always
+    environment:
+      POSTGRES_USER: admin         # ชื่อผู้ใช้สำหรับฐานข้อมูล
+      POSTGRES_PASSWORD: admin  # รหัสผ่านของผู้ใช้
+      POSTGRES_DB: narathiwat-weather       # ชื่อฐานข้อมูล
+    ports:
+      - "5433:5432"  # แมปพอร์ตสำหรับเชื่อมต่อฐานข้อมูล
+    volumes:
+      - postgres-data:/var/lib/postgresql/data  # เก็บข้อมูลถาวร
+
+volumes:
+  postgres-data:  # กำหนด Volume เพื่อให้ข้อมูลยังคงอยู่เมื่อคอนเทนเนอร์หยุดทำงาน
